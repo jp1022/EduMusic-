@@ -19,4 +19,59 @@ tools:context=".BeatsActivity">
         android:layout_alignParentStart="true"
         android:id="@+id/view" />
 
+    <!-- Top Row -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level One"
+        android:id="@+id/beatsOne"
+        android:layout_marginTop="120dp"
+        android:onClick="beatsLesson" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level Two"
+        android:id="@+id/beatsTwo"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="120dp"
+        android:onClick="beatsLesson" />
+
+    <!-- Middle Row -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level Three"
+        android:id="@+id/beatsThree"
+        android:layout_marginTop="200dp"
+        android:onClick="beatsLesson"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level Four"
+        android:id="@+id/beatsFour"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="200dp"
+        android:onClick="disabled" />
+
+
+    <!-- Bottom Row -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level Five"
+        android:id="@+id/beatsFive"
+        android:layout_marginTop="280dp"
+        android:onClick="goStore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level Six"
+        android:id="@+id/beatsSix"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="280dp"
+        android:onClick="disabled" />
+
 </RelativeLayout>

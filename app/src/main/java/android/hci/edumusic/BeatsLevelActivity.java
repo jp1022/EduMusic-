@@ -2,19 +2,24 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 /**
- * Created by ian on 11/17/2014.
+ * Created by ian on 11/19/2014.
  */
-public class BeatsActivity extends Activity {
+public class BeatsLevelActivity extends Activity {
+    int levelId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beats);
+        setContentView(R.layout.activity_beatslevel);
+        Bundle b = getIntent().getExtras();
+        levelId = b.getInt("Level");
     }
 
 
@@ -37,28 +42,24 @@ public class BeatsActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean beatsLesson(View v){
+    public boolean playRhythm(View v){
         try{
-            Intent k;
-            Bundle b = new Bundle();
-            switch(v.getId()){
-                case R.id.beatsOne:
-                    k = new Intent(BeatsActivity.this, BeatsLevelActivity.class);
-                    b.putInt("Level", 1); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+            MediaPlayer mp;
+            switch(levelId){
+                case 1:
+                    //Level 1
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsone);
+                    mp.start();
                 break;
-                case R.id.beatsTwo:
-                    k = new Intent(BeatsActivity.this, BeatsLevelActivity.class);
-                    b.putInt("Level", 2); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+                case 2:
+                    //Level 2
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatstwo);
+                    mp.start();
                 break;
-                case R.id.beatsThree:
-                    k = new Intent(BeatsActivity.this, BeatsLevelActivity.class);
-                    b.putInt("Level", 3); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+                case 3:
+                    //Level 3
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsthree);
+                    mp.start();
                 break;
             }
         } catch(Exception e){
