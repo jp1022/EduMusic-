@@ -19,4 +19,84 @@
         android:layout_alignParentStart="true"
         android:id="@+id/view" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Store"
+        android:id="@+id/store_title"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:layout_marginTop="67dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drum"
+        android:id="@+id/buy_drum"
+        android:layout_below="@+id/store_title"
+        android:layout_toStartOf="@+id/store_title"
+        android:layout_marginTop="54dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Piano"
+        android:id="@+id/buy_piano"
+        android:layout_alignTop="@+id/buy_drum"
+        android:layout_toEndOf="@+id/store_title" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kazoo"
+        android:id="@+id/buy_kazoo"
+        android:layout_toStartOf="@+id/store_title"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/buy_drum" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Instruments"
+        android:id="@+id/my_inst"
+        android:layout_alignTop="@+id/view"
+        android:layout_alignEnd="@+id/view" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Egg"
+        android:id="@+id/buy_egg"
+        android:layout_alignTop="@+id/buy_kazoo"
+        android:layout_alignStart="@+id/my_inst"
+        android:layout_alignEnd="@+id/buy_piano" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flute"
+        android:id="@+id/buy_flute"
+        android:layout_below="@+id/buy_kazoo"
+        android:layout_alignStart="@+id/buy_kazoo"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guitar"
+        android:id="@+id/buy_guitar"
+        android:layout_alignBottom="@+id/buy_flute"
+        android:layout_alignEnd="@+id/buy_egg" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maracca"
+        android:id="@+id/buy_maracca"
+        android:layout_toStartOf="@+id/store_title"
+        android:layout_below="@+id/buy_flute"
+        android:layout_alignEnd="@+id/buy_flute" />
+
 </RelativeLayout>
