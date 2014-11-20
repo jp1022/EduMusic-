@@ -47,19 +47,37 @@ public class BeatsLevelActivity extends Activity {
             MediaPlayer mp;
             switch(levelId){
                 case 1:
-                    //Level 1
+                    //Level 1 audio
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsone);
                     mp.start();
+                    Thread.sleep(5000);
+                    //Start tone
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
+                    mp.start();
+                    Thread.sleep(1000);
+                    mp.stop();
                 break;
                 case 2:
                     //Level 2
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatstwo);
                     mp.start();
+                    Thread.sleep(5000);
+                    //Start tone
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
+                    mp.start();
+                    Thread.sleep(1000);
+                    mp.stop();
                 break;
                 case 3:
                     //Level 3
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsthree);
                     mp.start();
+                    Thread.sleep(5000);
+                    //Start tone
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
+                    mp.start();
+                    Thread.sleep(1000);
+                    mp.stop();
                 break;
             }
         } catch(Exception e){
