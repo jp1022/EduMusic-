@@ -41,7 +41,7 @@ public class DrumActivity extends Activity{
 
     public void playDrum(View v){
         MediaPlayer mp;
-        mp = MediaPlayer.create(DrumActivity.this, R.raw.drum);
+        mp = MediaPlayer.create(DrumActivity.this, R.raw.drumroll);
         mp.start();
     }
 }
