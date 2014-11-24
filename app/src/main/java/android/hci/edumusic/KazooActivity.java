@@ -1,9 +1,11 @@
 package android.hci.edumusic;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Created by John on 11/21/14.
@@ -33,5 +35,11 @@ public class KazooActivity extends Activity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void playKazoo(View v){
+        MediaPlayer mp;
+        mp = MediaPlayer.create(KazooActivity.this, R.raw.kazoo);
+        mp.start();
     }
 }
