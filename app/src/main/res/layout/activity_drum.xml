@@ -37,7 +37,7 @@
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:id="@+id/imageButton"
-        android:src="@drawable/drum"
+        android:src="@drawable/drums"
         android:layout_toStartOf="@+id/textView"
         android:scaleType="fitCenter"
         android:layout_below="@+id/textView"
