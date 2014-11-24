@@ -21,43 +21,34 @@
 
     <!-- Text and Instructions -->
 
-    <!-- Begin Level Button -->
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play Pitch"
-        android:id="@+id/startPitch"
-        android:onClick="playPitch"
-        android:layout_above="@+id/choice_one"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="88dp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="One"
-        android:id="@+id/choice_one"
-        android:onClick="buttonOne"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Two"
-        android:id="@+id/choice_two"
-        android:onClick="buttonTwo"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Which is higher?"
-        android:id="@+id/instruction"
-        android:textSize="40sp"
-        android:layout_above="@+id/startPitch"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="110dp" />
+        android:id="@+id/feedback_text"
+        android:text="Correct!"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Level"
+        android:id="@+id/to_main"
+        android:layout_alignBottom="@+id/view"
+        android:layout_alignParentStart="true"
+        android:onClick="mainMenu" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pitch Level"
+        android:id="@+id/pitch_lvl"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="pitchLevelSelect" />
 
 
 </RelativeLayout>

@@ -1,27 +1,41 @@
 package android.hci.edumusic;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by mshon on 11/20/14.
  */
 public class PitchLevelActivity extends Activity {
 
-    Button one = (Button) findViewById(R.id.choice_one);
-    Button two = (Button) findViewById(R.id.choice_two);
+    TextView inst;
+
     int levelId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pitchlevel);
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
+        inst = (TextView) findViewById(R.id.instruction);
+        switch(levelId){
+            case 1:
+                inst.setText("Which is lower?");
+                break;
+            case 2:
+                inst.setText("Which is higher?");
+                break;
+            case 3:
+                inst.setText("Which is lower?");
+                break;
+        }
     }
 
 
@@ -50,18 +64,42 @@ public class PitchLevelActivity extends Activity {
             switch(levelId){
                 case 1:
                     //Level 1
-//                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsone);
-//                    mp.start();
+                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.piano_octave0mp);
+                    mp.start();
+
+                    Thread.sleep(2000);
+                    //Start tone
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.piano_octave1mp);
+                    mp.start();
+                    Thread.sleep(2000);
+                    mp.stop();
+
                     break;
                 case 2:
                     //Level 2
-//                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatstwo);
-//                    mp.start();
+
+                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.guitar_octave3mp);
+                    mp.start();
+                    Thread.sleep(2000);
+                    //Start tone
+                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.guitar_octave2mp);
+                    mp.start();
+                    Thread.sleep(2000);
+                    mp.stop();
+
                     break;
                 case 3:
                     //Level 3
-//                    mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsthree);
-//                    mp.start();
+
+                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.femalevoice_aa_db4mp);
+                    mp.start();
+                    Thread.sleep(3000);
+                    //Start tone
+                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.femalevoice_aa_a3mp);
+                    mp.start();
+                    Thread.sleep(3000);
+                    mp.stop();
+
                     break;
             }
         } catch(Exception e){
@@ -72,26 +110,55 @@ public class PitchLevelActivity extends Activity {
 
     public boolean buttonOne(View v){
 
+        Intent k;
+        Bundle b = new Bundle();
         switch(levelId){
             case 1:
-                return true;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",true);
+                k.putExtras(b);
+                startActivity(k);
+                break;
             case 2:
-                return false;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",true);
+                k.putExtras(b);
+                startActivity(k);
+                break;
             case 3:
-                return true;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",false);
+                k.putExtras(b);
+                startActivity(k);
+                break;
         }
-        return false;
+        return true;
     }
 
     public boolean buttonTwo(View v){
+
+        Intent k;
+        Bundle b = new Bundle();
         switch(levelId){
             case 1:
-                return false;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",false);
+                k.putExtras(b);
+                startActivity(k);
+                break;
             case 2:
-                return true;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",false);
+                k.putExtras(b);
+                startActivity(k);
+                break;
             case 3:
-                return false;
+                k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
+                b.putBoolean("Result",true);
+                k.putExtras(b);
+                startActivity(k);
+                break;
         }
-        return false;
+        return true;
     }
 }

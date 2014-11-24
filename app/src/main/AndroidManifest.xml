@@ -37,6 +37,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PitchLevelActivity"></activity>
+
+        <activity
+            android:name=".PitchFeedback"></activity>
+
+
         <!-- Store -->
         <activity
             android:name=".StoreActivity"

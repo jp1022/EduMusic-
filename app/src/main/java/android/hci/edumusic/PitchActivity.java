@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 /**
@@ -44,26 +45,26 @@ public class PitchActivity extends Activity{
 
     public boolean pitchLesson(View v){
         try{
-            Intent k;
+            Intent i;
             Bundle b = new Bundle();
             switch(v.getId()){
                 case R.id.pitchOne:
-                    k = new Intent(PitchActivity.this, PitchLevelActivity.class);
-                    b.putInt("Level", 1); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+                    i = new Intent(PitchActivity.this, PitchLevelActivity.class);
+                    b.putInt("Level", 1); //Passing parameter of level to PitchLevelActivity
+                    i.putExtras(b);
+                    startActivity(i);
                     break;
                 case R.id.pitchTwo:
-                    k = new Intent(PitchActivity.this, PitchLevelActivity.class);
-                    b.putInt("Level", 2); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+                    i = new Intent(PitchActivity.this, PitchLevelActivity.class);
+                    b.putInt("Level", 2); //Passing parameter of level to PitchLevelActivity
+                    i.putExtras(b);
+                    startActivity(i);
                     break;
                 case R.id.pitchThree:
-                    k = new Intent(PitchActivity.this, PitchLevelActivity.class);
-                    b.putInt("Level", 3); //Passing parameter of level to BeatsLevelActivity
-                    k.putExtras(b);
-                    startActivity(k);
+                    i = new Intent(PitchActivity.this, PitchLevelActivity.class);
+                    b.putInt("Level", 3); //Passing parameter of level to PitchLevelActivity
+                    i.putExtras(b);
+                    startActivity(i);
                     break;
             }
         } catch(Exception e){
