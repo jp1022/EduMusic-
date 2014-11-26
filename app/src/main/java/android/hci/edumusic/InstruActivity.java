@@ -8,14 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 /**
- * Created by ian on 11/17/2014.
+ * Created by John on 11/25/14.
  */
-public class StoreActivity extends Activity{
+public class InstruActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store);
+        setContentView(R.layout.activity_instruments);
     }
 
     @Override
@@ -37,39 +37,9 @@ public class StoreActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean goDrum(View v){
+    public boolean goStore(View v){
         try{
-            Intent k = new Intent(StoreActivity.this, DrumActivity.class);
-            startActivity(k);
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
-
-    public boolean goPiano(View v){
-        try{
-            Intent k = new Intent(StoreActivity.this, PianoActivity.class);
-            startActivity(k);
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
-
-    public boolean goKazoo(View v){
-        try{
-            Intent k = new Intent(StoreActivity.this, KazooActivity.class);
-            startActivity(k);
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
-
-    public boolean goInstrument(View v){
-        try{
-            Intent k = new Intent(StoreActivity.this, InstruActivity.class);
+            Intent k = new Intent(InstruActivity.this, StoreActivity.class);
             startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING
@@ -79,7 +49,7 @@ public class StoreActivity extends Activity{
 
     public boolean disabled(View v){
         try{
-            Intent k = new Intent(StoreActivity.this, DisabledActivity.class);
+            Intent k = new Intent(InstruActivity.this, DisabledActivity.class);
             startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING
