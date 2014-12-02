@@ -25,6 +25,7 @@ public class PitchLevelActivity extends Activity {
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
         inst = (TextView) findViewById(R.id.instruction);
+        // goals/questions for levels
         switch(levelId){
             case 1:
                 inst.setText("Which is lower?");
@@ -114,18 +115,21 @@ public class PitchLevelActivity extends Activity {
         Bundle b = new Bundle();
         switch(levelId){
             case 1:
+                //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
                 k.putExtras(b);
                 startActivity(k);
                 break;
             case 2:
+                //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
                 k.putExtras(b);
                 startActivity(k);
                 break;
             case 3:
+                //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
                 k.putExtras(b);
@@ -141,18 +145,21 @@ public class PitchLevelActivity extends Activity {
         Bundle b = new Bundle();
         switch(levelId){
             case 1:
+                //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
                 k.putExtras(b);
                 startActivity(k);
                 break;
             case 2:
+                //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
                 k.putExtras(b);
                 startActivity(k);
                 break;
             case 3:
+                //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
                 k.putExtras(b);
