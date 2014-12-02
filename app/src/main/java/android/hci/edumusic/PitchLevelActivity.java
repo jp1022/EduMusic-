@@ -17,6 +17,7 @@ public class PitchLevelActivity extends Activity {
     TextView inst;
 
     int levelId;
+    EduMusicDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class PitchLevelActivity extends Activity {
                 inst.setText("Which is lower?");
                 break;
         }
+        db = new EduMusicDB(this);
     }
 
 
@@ -115,6 +117,9 @@ public class PitchLevelActivity extends Activity {
         Bundle b = new Bundle();
         switch(levelId){
             case 1:
+                // adding points since correct
+                db.addPts(75);
+
                 //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
@@ -122,6 +127,9 @@ public class PitchLevelActivity extends Activity {
                 startActivity(k);
                 break;
             case 2:
+                // adding points since correct
+                db.addPts(75);
+
                 //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
@@ -129,6 +137,9 @@ public class PitchLevelActivity extends Activity {
                 startActivity(k);
                 break;
             case 3:
+                // still give points for trying
+                db.addPts(25);
+
                 //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
@@ -145,6 +156,9 @@ public class PitchLevelActivity extends Activity {
         Bundle b = new Bundle();
         switch(levelId){
             case 1:
+                // still give points for trying
+                db.addPts(25);
+
                 //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
@@ -152,6 +166,9 @@ public class PitchLevelActivity extends Activity {
                 startActivity(k);
                 break;
             case 2:
+                // still give points for trying
+                db.addPts(25);
+
                 //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
@@ -159,7 +176,12 @@ public class PitchLevelActivity extends Activity {
                 startActivity(k);
                 break;
             case 3:
+
+                // adding points since correct
+                db.addPts(75);
+
                 //correct answer!
+
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
                 k.putExtras(b);

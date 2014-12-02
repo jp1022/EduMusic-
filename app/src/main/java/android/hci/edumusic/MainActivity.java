@@ -10,7 +10,7 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
-    static EduMusicDB db;
+    EduMusicDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,5 +77,9 @@ public class MainActivity extends Activity {
             //TODO ACTUALLY DO SOMETHING
         }
         return true;
+    }
+
+    public int getPts(){
+        return db.getPts();
     }
 }

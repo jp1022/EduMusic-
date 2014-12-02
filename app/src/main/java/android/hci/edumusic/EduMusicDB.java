@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by ian on 11/17/2014.
@@ -37,6 +38,8 @@ public class EduMusicDB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + POINTS_TABLE_NAME);
         db.execSQL(POINTS_TABLE_CREATE);
         setUpLevels(db);
+        setUpStore(db);
+        setUpPts(db);
     }
 
     public void onUpgrade(SQLiteDatabase db, int a, int b){ //Borrowed from Ravi Tamada
@@ -52,7 +55,6 @@ public class EduMusicDB extends SQLiteOpenHelper {
     public void updateInstrument(String level, int stars){ //Adopted from Ravi Tamada
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE" + LEVEL_TABLE_NAME + "SET STARS = " + stars + " WHERE LEVEL = " + level);
-        db.close();
     }
 
     public void purchaseInstrument(String name){ //Adopted from Ravi Tamada
@@ -63,7 +65,16 @@ public class EduMusicDB extends SQLiteOpenHelper {
             pts = c.getInt(0);
         }
         db.execSQL("UPDATE" +  STORE_TABLE_NAME + "SET OWNED = TRUE WHERE INSTRUMENT = " + name);
+    }
+    public int getPts(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int currPts = 0;
+        Cursor c = db.rawQuery("SELECT POINTS FROM " + POINTS_TABLE_NAME, null);
+        if(c.moveToFirst()){
+            currPts = c.getInt(0);
+        }
         db.close();
+        return currPts;
     }
 
     public void addPts(int num){
@@ -73,8 +84,8 @@ public class EduMusicDB extends SQLiteOpenHelper {
         if(c.moveToFirst()){
             currPts = c.getInt(0);
         }
-        db.execSQL("UPDATE" +  POINTS_TABLE_NAME + "SET POINTS = " + (currPts + num));
-        db.close();
+        db.execSQL("UPDATE " +  POINTS_TABLE_NAME + " SET POINTS = " + (currPts + num));
+        Log.d("Actual", "" + currPts);
     }
 
     public void setUpLevels(SQLiteDatabase db){
@@ -132,6 +143,7 @@ public class EduMusicDB extends SQLiteOpenHelper {
     }
 
     public void setUpPts(SQLiteDatabase db){
+        Log.d("Test", "Yes");
         ContentValues pts = new ContentValues();
         pts.put("POINTS", 150);
         db.insert(POINTS_TABLE_NAME, null, pts);
