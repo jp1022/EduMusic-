@@ -1,19 +1,32 @@
 package android.hci.edumusic;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 /**
- * Created by ian on 11/17/2014.
+ * Created by mshon on 11/20/14.
  */
-public class DisabledActivity extends Activity {
+public class PitchFeedback extends Activity {
 
+    boolean correct;
+    TextView feedbackTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disabled);
+        setContentView(R.layout.pitch_feedback);
+        feedbackTxt = (TextView) findViewById(R.id.feedback_text);
+        Bundle b = getIntent().getExtras();
+        correct = b.getBoolean("Result");
+        if(correct){
+            feedbackTxt.setText("Correct!");
+        }else{
+            feedbackTxt.setText("Incorrect!");
+        }
     }
 
 
@@ -36,5 +49,18 @@ public class DisabledActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void pitchLevelSelect(View v){
+
+        Intent k = new Intent(PitchFeedback.this, PitchActivity.class);
+        startActivity(k);
+
+    }
+
+    public void mainMenu(View v){
+
+        Intent k = new Intent(PitchFeedback.this, MainActivity.class);
+        startActivity(k);
+
+    }
 
 }
