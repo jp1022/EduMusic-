@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="This is a keyboard instrument that can come in many shapes and sizes. This is a very professional looking piano that is black and would look attractive in a concert"
+        android:text="This is a keyboard instrument. Its played by pressing a key, which strikes a string. If certain keys are played together, you can for a chord. A piano is used in orchestras, jazz bands, and also as a solo instruments."
         android:id="@+id/drum_description"
         android:layout_below="@+id/imageButton"
         android:layout_alignParentEnd="true"

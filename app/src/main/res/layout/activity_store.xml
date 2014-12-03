@@ -83,7 +83,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kazoo"
+        android:text="Didgeridoo"
         android:id="@+id/inst_banjo"
         android:onClick="goKazoo"
         android:layout_centerVertical="true"

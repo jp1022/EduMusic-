@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Kazoo"
+        android:text="Didgeridoo"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
@@ -35,7 +35,7 @@
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:id="@+id/imageButton"
-        android:src="@drawable/kazoo"
+        android:src="@drawable/didgeridoo"
         android:layout_toStartOf="@+id/textView"
         android:scaleType="fitCenter"
         android:layout_below="@+id/textView"
@@ -45,16 +45,14 @@
         android:clickable="true"
         android:onClick="playKazoo" />
 
-    <!-- Description of the instrument -->
+    <!-- Description of the instrument. Partially adapted from Wikipedia -->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="This is a wind instrument, not commonly used in orchestras. You blow into the narrow end, and it produces a funny sound. It is often used for comedic effect
-        "
+        android:text="This is a wind instrument played by the Aborigines in Australia. You blow into the one end, which produces a low growl. There are no keys; thus you don't have to worry about finger positions. Aborigines often use the instrument to tell stories by mimicking animal sounds."
         android:id="@+id/drum_description"
-        android:layout_below="@+id/imageButton"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="37dp" />
+        android:layout_above="@+id/kazoo_transaction"
+        android:layout_alignParentStart="true" />
 
     <!-- Button that actually executes the transaction-->
     <Button
