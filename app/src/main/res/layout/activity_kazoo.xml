@@ -64,6 +64,5 @@
         android:id="@+id/kazoo_transaction"
         android:layout_alignBottom="@+id/view"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
         android:background="@layout/button_border"/>
 </RelativeLayout>
