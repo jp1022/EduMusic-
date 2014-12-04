@@ -103,4 +103,15 @@
         android:layout_marginTop="280dp"
         android:background="@layout/button_border"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back"
+        android:text="Back"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="toMain"
+        android:background="@layout/back_border"/>
+
 </RelativeLayout>

@@ -56,6 +56,8 @@ public class BeatsLevelActivity extends Activity {
 
     public boolean playRhythm(View v){
         try{
+            Intent k;
+            Bundle b = new Bundle();
             MediaPlayer mp;
             switch(levelId){
                 case 1:
@@ -66,19 +68,31 @@ public class BeatsLevelActivity extends Activity {
                     //Start tone
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                     mp.start();
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     mp.stop();
+                    Thread.sleep(3500);
+
+                    k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
+                    b.putInt("Level", 1); //Passing parameter of level to BeatsLevelActivity
+                    k.putExtras(b);
+                    startActivity(k);
                 break;
                 case 2:
                     //Level 2
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatstwo);
                     mp.start();
-                    Thread.sleep(5000);
+                    Thread.sleep(5250);
                     //Start tone
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                     mp.start();
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     mp.stop();
+                    Thread.sleep(3500);
+
+                    k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
+                    b.putInt("Level", 2); //Passing parameter of level to BeatsLevelActivity
+                    k.putExtras(b);
+                    startActivity(k);
                 break;
                 case 3:
                     //Level 3
@@ -88,8 +102,14 @@ public class BeatsLevelActivity extends Activity {
                     //Start tone
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                     mp.start();
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     mp.stop();
+                    Thread.sleep(3500);
+
+                    k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
+                    b.putInt("Level", 3); //Passing parameter of level to BeatsLevelActivity
+                    k.putExtras(b);
+                    startActivity(k);
                 break;
             }
         } catch(Exception e){
@@ -97,4 +117,5 @@ public class BeatsLevelActivity extends Activity {
         }
         return true;
     }
+
 }

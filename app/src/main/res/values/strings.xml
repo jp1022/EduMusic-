@@ -3,5 +3,7 @@
 
     <string name="app_name">EduMusic</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_beats_feedback">BeatsFeedback</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

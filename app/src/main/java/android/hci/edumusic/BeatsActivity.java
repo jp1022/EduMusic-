@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by ian on 11/17/2014.
  */
 public class BeatsActivity extends Activity {
+
+    EduMusicDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,9 @@ public class BeatsActivity extends Activity {
         TextView levelFour = (TextView) findViewById(R.id.beatsFour);
         TextView levelFive = (TextView) findViewById(R.id.beatsFive);
         TextView levelSix = (TextView) findViewById(R.id.beatsSix);
+        TextView backButton = (TextView) findViewById(R.id.back);
+        backButton.setTextSize(15);
+        backButton.setTypeface(tf, Typeface.BOLD);
 
 
         levelOne.setTextSize(20);
@@ -51,7 +59,35 @@ public class BeatsActivity extends Activity {
         levelSix.setTypeface(tf, Typeface.BOLD);
 
 
+        db = new EduMusicDB(this);
+        if(db.getStars("B1") <= 0) { //Grey out 2
+            Button _p2 = (Button) findViewById(R.id.beatsTwo);
+            _p2.setAlpha(.1f);
+            _p2.setClickable(false);
+        } else {
+            Button _p2 = (Button) findViewById(R.id.beatsTwo);
+            _p2.setAlpha(1f);
+            _p2.setClickable(true);
+        }
+        if(db.getStars("B2") <= 0) { //Grey out 3
+            Button _p3 = (Button) findViewById(R.id.beatsThree);
+            _p3.setAlpha(.1f);
+            _p3.setClickable(false);
+        } else {
+            Button _p3 = (Button) findViewById(R.id.beatsThree);
+            _p3.setAlpha(1f);
+            _p3.setClickable(true);
+        }
 
+        Button _p4 = (Button) findViewById(R.id.beatsFour);
+        _p4.setAlpha(.1f);
+        _p4.setClickable(false);
+        Button _p5= (Button) findViewById(R.id.beatsFive);
+        _p5.setAlpha(.1f);
+        _p5.setClickable(false);
+        Button _p6 = (Button) findViewById(R.id.beatsSix);
+        _p6.setAlpha(.1f);
+        _p6.setClickable(false);
     }
 
 
@@ -112,5 +148,9 @@ public class BeatsActivity extends Activity {
             //TODO ACTUALLY DO SOMETHING
         }
         return true;
+    }
+    public void toMain(View v){
+        Intent k = new Intent(BeatsActivity.this, MainActivity.class);
+        startActivity(k);
     }
 }
