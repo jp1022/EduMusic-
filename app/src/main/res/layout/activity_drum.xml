@@ -54,7 +54,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="This is a percussion instrument from the dawn of time. In this version of it you'll be sitting down and banging several drums at the same time"
+        android:text="This is a percussion instrument that has been used since the time of caveman. You play it simply by banging on the drum with a stick. Everyday objects can be used as drums including garbage cans and oil drums"
         android:id="@+id/drum_description"
         android:layout_below="@+id/imageButton"
         android:layout_alignParentEnd="true"

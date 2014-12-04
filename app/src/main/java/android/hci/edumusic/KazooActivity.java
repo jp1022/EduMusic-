@@ -62,7 +62,7 @@ public class KazooActivity extends Activity{
 
     public void playKazoo(View v){
         MediaPlayer mp;
-        mp = MediaPlayer.create(KazooActivity.this, R.raw.kazoo);
+        mp = MediaPlayer.create(KazooActivity.this, R.raw.didgeridoo);
         mp.start();
     }
 }
