@@ -35,7 +35,7 @@ public class PersonView extends View {
     }
 
     private void init(AttributeSet set, int defstyle) {
-        paint.setColor(Color.CYAN);
+        paint.setColor(Color.parseColor("#2BC2DF"));
         noteColor.setColor(Color.DKGRAY);
         paint.setAntiAlias(true);
         noteColor.setAntiAlias(true);
@@ -44,10 +44,10 @@ public class PersonView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(50,50,50,paint);
+        canvas.drawCircle(60,60,60,paint);
         int notes= db.getPts();
         noteColor.setTextSize(50);
-        canvas.drawText("" + notes, 40, 40, noteColor);
+        canvas.drawText("" + notes, 20, 70, noteColor);
 
     }
 

@@ -2,12 +2,15 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by ian on 11/19/2014.
@@ -18,6 +21,15 @@ public class BeatsLevelActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beatslevel);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        TextView levelOne = (TextView) findViewById(R.id.startRhythm);
+
+        levelOne.setTextSize(15);
+        levelOne.setTypeface(tf, Typeface.BOLD);
+
+
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
     }

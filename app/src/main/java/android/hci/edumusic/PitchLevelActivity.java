@@ -2,8 +2,11 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +26,30 @@ public class PitchLevelActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pitchlevel);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        TextView titleText = (TextView) findViewById(R.id.instruction);
+
+        titleText.setTextSize(48);
+        titleText.setTextColor(Color.DKGRAY);
+        titleText.setTypeface(tf, Typeface.BOLD);
+        titleText.setGravity(Gravity.CENTER);
+
+        TextView levelOne = (TextView) findViewById(R.id.startPitch);
+        TextView levelTwo = (TextView) findViewById(R.id.choice_one);
+        TextView levelThree = (TextView) findViewById(R.id.choice_two);
+
+
+
+        levelOne.setTextSize(15);
+        levelOne.setTypeface(tf, Typeface.BOLD);
+        levelTwo.setTextSize(15);
+        levelTwo.setTypeface(tf, Typeface.BOLD);
+        levelThree.setTextSize(15);
+        levelThree.setTypeface(tf, Typeface.BOLD);
+
+
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
         inst = (TextView) findViewById(R.id.instruction);

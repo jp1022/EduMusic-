@@ -2,10 +2,13 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by John on 11/25/14.
@@ -16,6 +19,32 @@ public class InstruActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruments);
+
+        Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
+
+        TextView titleText = (TextView) findViewById(R.id.instr_title);
+
+        titleText.setTextSize(30);
+        titleText.setTextColor(Color.DKGRAY);
+        titleText.setTypeface(title, Typeface.BOLD);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        TextView tubaButton = (TextView) findViewById(R.id.inst_tuba);
+        TextView cymbalButton = (TextView) findViewById(R.id.inst_cymbal);
+        TextView storeButton = (TextView) findViewById(R.id.go_store);
+        TextView banjoButton = (TextView) findViewById(R.id.inst_banjo);
+
+
+        tubaButton.setTextSize(20);
+        tubaButton.setTypeface(tf, Typeface.BOLD);
+        cymbalButton.setTextSize(20);
+        cymbalButton.setTypeface(tf, Typeface.BOLD);
+        storeButton.setTextSize(20);
+        storeButton.setTypeface(tf, Typeface.BOLD);
+        banjoButton.setTextSize(20);
+        banjoButton.setTypeface(tf, Typeface.BOLD);
+
     }
 
     @Override

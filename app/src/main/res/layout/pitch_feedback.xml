@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".BeatsLevelActivity">
+    tools:context=".BeatsLevelActivity"
+    android:background="#ffffffff">
 
     <!-- User profile -->
 
@@ -23,14 +24,15 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/feedback_text"
         android:text="Correct!"
         android:textSize="50sp"
         android:layout_alignTop="@+id/view"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="88dp" />
+        android:layout_marginTop="100dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,7 +41,9 @@
         android:id="@+id/to_main"
         android:layout_alignBottom="@+id/view"
         android:layout_alignParentStart="true"
-        android:onClick="mainMenu" />
+        android:onClick="mainMenu"
+        android:layout_marginBottom="30dp"
+        android:background="@layout/button_border"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -48,7 +52,9 @@
         android:id="@+id/pitch_lvl"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="pitchLevelSelect" />
+        android:layout_marginBottom="30dp"
+        android:onClick="pitchLevelSelect"
+        android:background="@layout/button_border"/>
 
 
 </RelativeLayout>

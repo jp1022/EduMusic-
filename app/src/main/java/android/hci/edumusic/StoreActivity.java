@@ -2,10 +2,13 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by ian on 11/17/2014.
@@ -16,6 +19,47 @@ public class StoreActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+
+
+        Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
+
+        TextView titleText = (TextView) findViewById(R.id.instr_title);
+
+        titleText.setTextSize(55);
+        titleText.setTextColor(Color.DKGRAY);
+        titleText.setTypeface(title, Typeface.BOLD);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        TextView drumButton = (TextView) findViewById(R.id.inst_tuba);
+        TextView pianoButton = (TextView) findViewById(R.id.inst_cymbal);
+        TextView myInstrumentsButton = (TextView) findViewById(R.id.my_inst);
+        TextView eggButton = (TextView) findViewById(R.id.go_store);
+        TextView guitarButton = (TextView) findViewById(R.id.buy_guitar);
+        TextView kazooButton = (TextView) findViewById(R.id.inst_banjo);
+        TextView tromboneButton = (TextView) findViewById(R.id.buy_trombone);
+
+
+
+        drumButton.setTextSize(20);
+        drumButton.setTypeface(tf, Typeface.BOLD);
+        pianoButton.setTextSize(20);
+        pianoButton.setTypeface(tf, Typeface.BOLD);
+        myInstrumentsButton.setTextSize(15);
+        myInstrumentsButton.setTypeface(tf, Typeface.BOLD);
+        eggButton.setTextSize(20);
+        eggButton.setTypeface(tf, Typeface.BOLD);
+        guitarButton.setTextSize(20);
+        guitarButton.setTypeface(tf, Typeface.BOLD);
+        kazooButton.setTextSize(20);
+        kazooButton.setTypeface(tf, Typeface.BOLD);
+        tromboneButton.setTextSize(20);
+        tromboneButton.setTypeface(tf, Typeface.BOLD);
+
+
+
+
     }
 
     @Override

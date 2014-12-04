@@ -2,7 +2,10 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,22 @@ public class PitchFeedback extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pitch_feedback);
         feedbackTxt = (TextView) findViewById(R.id.feedback_text);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        feedbackTxt.setTextSize(48);
+        feedbackTxt.setTextColor(Color.DKGRAY);
+        feedbackTxt.setTypeface(tf, Typeface.BOLD);
+
+        TextView levelOne = (TextView) findViewById(R.id.to_main);
+        TextView levelTwo = (TextView) findViewById(R.id.pitch_lvl);
+
+        levelOne.setTextSize(15);
+        levelOne.setTypeface(tf, Typeface.BOLD);
+        levelTwo.setTextSize(15);
+        levelTwo.setTypeface(tf, Typeface.BOLD);
+
+
         Bundle b = getIntent().getExtras();
         correct = b.getBoolean("Result");
         if(correct){

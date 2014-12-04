@@ -2,10 +2,12 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -17,6 +19,31 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new EduMusicDB(this);
+
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+        TextView levelOne = (TextView) findViewById(R.id.beatsButton);
+        TextView levelTwo = (TextView) findViewById(R.id.gigButton);
+        TextView levelThree = (TextView) findViewById(R.id.pitchButton);
+        TextView levelFour = (TextView) findViewById(R.id.storeButton);
+        TextView levelFive = (TextView) findViewById(R.id.settingsButton);
+        TextView levelSix = (TextView) findViewById(R.id.triviaButton);
+
+
+        levelOne.setTextSize(20);
+        levelOne.setTypeface(tf, Typeface.BOLD);
+        levelTwo.setTextSize(20);
+        levelTwo.setTypeface(tf, Typeface.BOLD);
+        levelThree.setTextSize(20);
+        levelThree.setTypeface(tf, Typeface.BOLD);
+        levelFour.setTextSize(20);
+        levelFour.setTypeface(tf, Typeface.BOLD);
+        levelFive.setTextSize(20);
+        levelFive.setTypeface(tf, Typeface.BOLD);
+        levelSix.setTextSize(20);
+        levelSix.setTypeface(tf, Typeface.BOLD);
+
     }
 
 
