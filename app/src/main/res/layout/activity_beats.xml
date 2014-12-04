@@ -23,7 +23,7 @@ tools:context=".BeatsActivity"
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Beat"
+        android:text="Beats"
         android:id="@+id/beat_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
@@ -58,14 +58,13 @@ tools:context=".BeatsActivity"
         android:layout_marginTop="200dp"
         android:onClick="beatsLesson"
         android:background="@layout/button_border"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Level 4"
         android:id="@+id/beatsFour"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="200dp"
+        android:layout_alignParentRight="true"
         android:onClick="disabled"
         android:background="@layout/button_border"/>
 
@@ -89,5 +88,17 @@ tools:context=".BeatsActivity"
         android:layout_marginTop="280dp"
         android:onClick="disabled"
         android:background="@layout/button_border"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back"
+        android:text="Back"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="toMain"
+        android:background="@layout/back_border"/>
 
 </RelativeLayout>

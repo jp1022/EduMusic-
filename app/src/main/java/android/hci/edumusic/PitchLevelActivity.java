@@ -150,6 +150,7 @@ public class PitchLevelActivity extends Activity {
                 //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
+                b.putInt("Level", 1);
                 k.putExtras(b);
                 startActivity(k);
                 break;
@@ -160,6 +161,7 @@ public class PitchLevelActivity extends Activity {
                 //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
+                b.putInt("Level", 1);
                 k.putExtras(b);
                 startActivity(k);
                 break;
@@ -170,6 +172,7 @@ public class PitchLevelActivity extends Activity {
                 //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
+                b.putInt("Level", 1);
                 k.putExtras(b);
                 startActivity(k);
                 break;

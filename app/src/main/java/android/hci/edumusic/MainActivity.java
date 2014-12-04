@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -43,6 +44,16 @@ public class MainActivity extends Activity {
         levelFive.setTypeface(tf, Typeface.BOLD);
         levelSix.setTextSize(20);
         levelSix.setTypeface(tf, Typeface.BOLD);
+
+        Button _p4 = (Button) findViewById(R.id.gigButton);
+        _p4.setAlpha(.1f);
+        _p4.setClickable(false);
+        Button _p5= (Button) findViewById(R.id.triviaButton);
+        _p5.setAlpha(.1f);
+        _p5.setClickable(false);
+        Button _p6 = (Button) findViewById(R.id.settingsButton);
+        _p6.setAlpha(.1f);
+        _p6.setClickable(false);
 
     }
 

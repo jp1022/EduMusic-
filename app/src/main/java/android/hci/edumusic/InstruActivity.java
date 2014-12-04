@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -34,6 +35,9 @@ public class InstruActivity extends Activity {
         TextView cymbalButton = (TextView) findViewById(R.id.inst_cymbal);
         TextView storeButton = (TextView) findViewById(R.id.go_store);
         TextView banjoButton = (TextView) findViewById(R.id.inst_banjo);
+        TextView backButton = (TextView) findViewById(R.id.back);
+        backButton.setTextSize(15);
+        backButton.setTypeface(tf, Typeface.BOLD);
 
 
         tubaButton.setTextSize(20);
@@ -44,6 +48,16 @@ public class InstruActivity extends Activity {
         storeButton.setTypeface(tf, Typeface.BOLD);
         banjoButton.setTextSize(20);
         banjoButton.setTypeface(tf, Typeface.BOLD);
+
+        Button _p4 = (Button) findViewById(R.id.inst_tuba);
+        _p4.setAlpha(.1f);
+        _p4.setClickable(false);
+        Button _p5= (Button) findViewById(R.id.inst_cymbal);
+        _p5.setAlpha(.1f);
+        _p5.setClickable(false);
+        Button _p6 = (Button) findViewById(R.id.inst_banjo);
+        _p6.setAlpha(.1f);
+        _p6.setClickable(false);
 
     }
 
@@ -84,5 +98,10 @@ public class InstruActivity extends Activity {
             //TODO ACTUALLY DO SOMETHING
         }
         return true;
+    }
+
+    public void toMain(View v){
+        Intent k = new Intent(InstruActivity.this, MainActivity.class);
+        startActivity(k);
     }
 }

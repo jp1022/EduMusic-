@@ -18,11 +18,16 @@ public class PitchFeedback extends Activity {
 
     boolean correct;
     TextView feedbackTxt;
+    EduMusicDB db;
+    int levelId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pitch_feedback);
+
+
         feedbackTxt = (TextView) findViewById(R.id.feedback_text);
+        db = new EduMusicDB(this);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
@@ -39,10 +44,14 @@ public class PitchFeedback extends Activity {
         levelTwo.setTypeface(tf, Typeface.BOLD);
 
 
+
         Bundle b = getIntent().getExtras();
+        levelId = b.getInt("Level");
         correct = b.getBoolean("Result");
         if(correct){
+
             feedbackTxt.setText("Correct!");
+            db.setStars("P" + levelId, 3);
         }else{
             feedbackTxt.setText("Incorrect!");
         }

@@ -89,37 +89,37 @@ public class EduMusicDB extends SQLiteOpenHelper {
     }
 
     public void setUpLevels(SQLiteDatabase db){
-        ContentValues beats_one = new ContentValues();
-        beats_one.put("LEVEL", "B1");
-        beats_one.put("STARS", 0);
-        ContentValues beats_two = new ContentValues();
-        beats_one.put("LEVEL", "B2");
-        beats_one.put("STARS", 0);
-        ContentValues beats_three = new ContentValues();
-        beats_one.put("LEVEL", "B3");
-        beats_one.put("STARS", 0);
-        ContentValues pitch_one = new ContentValues();
-        beats_one.put("LEVEL", "P1");
-        beats_one.put("STARS", 0);
-        ContentValues pitch_two = new ContentValues();
-        beats_one.put("LEVEL", "P2");
-        beats_one.put("STARS", 0);
-        ContentValues pitch_three = new ContentValues();
-        beats_one.put("LEVEL", "P3");
-        beats_one.put("STARS", 0);
-        db.insert(LEVEL_TABLE_NAME, null, beats_one);
-        db.insert(LEVEL_TABLE_NAME, null, beats_two);
-        db.insert(LEVEL_TABLE_NAME, null, beats_three);
-        db.insert(LEVEL_TABLE_NAME, null, pitch_one);
-        db.insert(LEVEL_TABLE_NAME, null, pitch_two);
-        db.insert(LEVEL_TABLE_NAME, null, pitch_three);
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'B1\', 0);");
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'B2\', 0);");
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'B3\', 0);");
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'P1\', 0);");
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'P2\', 0);");
+        db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'P3\', 0);");
+        db.execSQL("COMMIT;");
+    }
+
+    public void setStars(String lvlName, int num){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("Stars", "" + num);
+        Log.d("LVL", lvlName);
+        db.execSQL("UPDATE " +  LEVEL_TABLE_NAME + " SET STARS=" + num + " WHERE LEVEL=\"" + lvlName + "\"");
     }
 
     public int getStars(String lvlName){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT STARS FROM " + LEVEL_TABLE_NAME + " WHERE LEVEL = " + lvlName, null);
+
+        Cursor c = db.rawQuery("SELECT LEVEL, STARS FROM " + LEVEL_TABLE_NAME, null);
         if(c.moveToFirst()){
-            return c.getInt(0);
+            Log.d("Begin", "Here");
+            while(!c.isAfterLast()){
+                Log.d(c.getString(0), lvlName);
+                if(c.getString(0).equals(lvlName)){
+                    Log.d("Stars", "" + c.getInt(1));
+                    return c.getInt(1);
+                } else {
+                    c.moveToNext();
+                }
+            }
         }
         return -1;
     }
