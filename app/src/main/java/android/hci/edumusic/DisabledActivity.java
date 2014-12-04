@@ -1,19 +1,30 @@
 package android.hci.edumusic;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 /**
  * Created by ian on 11/17/2014.
  */
 public class DisabledActivity extends Activity {
 
+    EduMusicDB db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disabled);
+
+        db = new EduMusicDB(this);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
     }
 
 

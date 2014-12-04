@@ -16,6 +16,7 @@ import android.widget.TextView;
  */
 public class StoreActivity extends Activity{
 
+    EduMusicDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,10 @@ public class StoreActivity extends Activity{
         _p6.setClickable(false);
 
 
+        db = new EduMusicDB(this);
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
 
     }
 

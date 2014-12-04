@@ -60,6 +60,13 @@ public class BeatsActivity extends Activity {
 
 
         db = new EduMusicDB(this);
+
+
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
+
+
         if(db.getStars("B1") <= 0) { //Grey out 2
             Button _p2 = (Button) findViewById(R.id.beatsTwo);
             _p2.setAlpha(.1f);
@@ -88,6 +95,8 @@ public class BeatsActivity extends Activity {
         Button _p6 = (Button) findViewById(R.id.beatsSix);
         _p6.setAlpha(.1f);
         _p6.setClickable(false);
+
+
     }
 
 

@@ -11,13 +11,13 @@
     tools:context=".DisabledActivity"
     android:background="#ffffffff">
 
-    <!-- User profile -->
-
-    <android.hci.edumusic.PersonView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+    <!-- Notes -->
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="150"
+        android:id="@+id/notes"
         android:layout_alignParentStart="true"
-        android:id="@+id/view" />
+        android:background="@layout/notes_border"/>
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -66,6 +67,10 @@ public class PitchLevelActivity extends Activity {
                 break;
         }
         db = new EduMusicDB(this);
+
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
     }
 
 
@@ -161,7 +166,7 @@ public class PitchLevelActivity extends Activity {
                 //correct answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",true);
-                b.putInt("Level", 1);
+                b.putInt("Level", 2);
                 k.putExtras(b);
                 startActivity(k);
                 break;
@@ -172,7 +177,7 @@ public class PitchLevelActivity extends Activity {
                 //incorrect answer!
                 k = new Intent(PitchLevelActivity.this, PitchFeedback.class);
                 b.putBoolean("Result",false);
-                b.putInt("Level", 1);
+                b.putInt("Level", 3);
                 k.putExtras(b);
                 startActivity(k);
                 break;

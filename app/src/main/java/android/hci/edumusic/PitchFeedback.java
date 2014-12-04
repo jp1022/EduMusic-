@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -49,12 +50,16 @@ public class PitchFeedback extends Activity {
         levelId = b.getInt("Level");
         correct = b.getBoolean("Result");
         if(correct){
-
             feedbackTxt.setText("Correct!");
             db.setStars("P" + levelId, 3);
         }else{
             feedbackTxt.setText("Incorrect!");
         }
+
+
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
     }
 
 
@@ -78,17 +83,13 @@ public class PitchFeedback extends Activity {
     }
 
     public void pitchLevelSelect(View v){
-
         Intent k = new Intent(PitchFeedback.this, PitchActivity.class);
         startActivity(k);
-
     }
 
     public void mainMenu(View v){
-
         Intent k = new Intent(PitchFeedback.this, MainActivity.class);
         startActivity(k);
-
     }
 
 }

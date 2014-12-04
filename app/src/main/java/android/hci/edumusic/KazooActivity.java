@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -16,6 +17,7 @@ import android.widget.TextView;
  */
 public class KazooActivity extends Activity{
 
+    EduMusicDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,11 @@ public class KazooActivity extends Activity{
         drumDescButton.setTypeface(tf, Typeface.BOLD);
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
+
+        db = new EduMusicDB(this);
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
 
 
     }

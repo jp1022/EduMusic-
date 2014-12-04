@@ -55,6 +55,10 @@ public class MainActivity extends Activity {
         _p6.setAlpha(.1f);
         _p6.setClickable(false);
 
+        Button notesButton = (Button) findViewById(R.id.notes);
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
+
     }
 
 
