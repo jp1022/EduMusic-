@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
 
     public boolean disabled(View v){
         try{
-            Intent k = new Intent(MainActivity.this, DisabledActivity.class);
+            Intent k = new Intent(MainActivity.this, ClapActivity.class);
             startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING

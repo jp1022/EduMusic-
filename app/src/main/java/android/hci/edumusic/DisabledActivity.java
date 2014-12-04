@@ -21,6 +21,8 @@ public class DisabledActivity extends Activity {
     private MediaRecorder mRecorder;
     private MediaPlayer mPlayer;
     private AudioManager mAudioManager;
+    private  boolean isOn = false;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -72,18 +74,25 @@ public class DisabledActivity extends Activity {
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         try {
             mRecorder.prepare();
+            int booger = mRecorder.getMaxAmplitude();
+            System.out.println("Outputtt is " + booger);
         } catch (IOException e) {
             Log.e(TAG, "Couldn't prepare and start MediaRecorder");
         }
 
         mRecorder.start();
+        isOn = true;
+
     }
     // Stop recording. Release resources
     private void stopRecording() {
         if (null != mRecorder) {
+            int booger = mRecorder.getMaxAmplitude();
+            System.out.println("Output is " + booger);
             mRecorder.stop();
             mRecorder.release();
             mRecorder = null;
+            isOn = false;
         }
     }
     // Toggle playback
@@ -101,6 +110,8 @@ public class DisabledActivity extends Activity {
             mPlayer.setDataSource(mFileName);
             mPlayer.prepare();
             mPlayer.start();
+            int booger = mRecorder.getMaxAmplitude();
+            System.out.println("Outputtt is " + booger);
         } catch (IOException e) {
             Log.e(TAG, "Couldn't prepare and start MediaPlayer");
         }
@@ -108,6 +119,8 @@ public class DisabledActivity extends Activity {
     // Stop playback. Release resources
     private void stopPlaying() {
         if (null != mPlayer) {
+            int booger = mRecorder.getMaxAmplitude();
+            System.out.println("Outputtt is " + booger);
             if (mPlayer.isPlaying())
                 mPlayer.stop();
             mPlayer.release();
