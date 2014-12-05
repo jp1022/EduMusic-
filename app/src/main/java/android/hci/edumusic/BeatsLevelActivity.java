@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioFormat;
 import android.media.AudioManager;
+import android.media.AudioRecord;
 import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +25,11 @@ import java.util.TimerTask;
  */
 public class BeatsLevelActivity extends Activity {
     int levelId;
+    static int count=0;
     EduMusicDB db;
+    //for audio
+    static private AudioRecord ar = null;
+    private int minSize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +76,9 @@ public class BeatsLevelActivity extends Activity {
         Button beatsButton = (Button) findViewById(R.id.startRhythm);
         beatsButton.setAlpha(.1f);
         beatsButton.setClickable(false);
+        minSize= AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        ar = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000,AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,minSize);
+        ar.startRecording();
         try{
             Timer t = new Timer();
             MediaPlayer mp;
@@ -82,16 +92,31 @@ public class BeatsLevelActivity extends Activity {
                             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                             mp.start();
                         }
-                    }, 5000);
+                    }, 5500);
+                    for(int ct = 0; ct < 30; ct++) {
+                        t.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                if (getAmp() > 7500) {
+                                    BeatsLevelActivity.count++;
+                                }
+                            }
+                        }, 5500 + 150 * ct);
+                    }
                     t.schedule(new TimerTask() {
                         public void run() {
+                            Log.d("Count", "" + BeatsLevelActivity.count);
                             Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
                             Bundle b = new Bundle();
                             b.putInt("Level", 1); //Passing parameter of level to BeatsLevelActivity
+                            b.putInt("Claps", BeatsLevelActivity.count);
                             k.putExtras(b);
+
+                            BeatsLevelActivity.ar.release();
+                            BeatsLevelActivity.count = 0;
                             startActivity(k);
                         }
-                    }, 8500);
+                    }, 10000);
                 break;
                 case 2:
                     //Level 2
@@ -101,17 +126,32 @@ public class BeatsLevelActivity extends Activity {
                         public void run() {
                             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                             mp.start();
+
                         }
-                    }, 5250);
+                    }, 5500);
+                    for(int ct = 0; ct < 30; ct++) {
+                        t.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                if (getAmp() > 7500) {
+                                    BeatsLevelActivity.count++;
+                                }
+                            }
+                        }, 5500 + 150*ct);
+                    }
+                    Log.d("Count", "" + count);
                     t.schedule(new TimerTask() {
                         public void run() {
                             Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
                             Bundle b = new Bundle();
                             b.putInt("Level", 2); //Passing parameter of level to BeatsLevelActivity
+                            b.putInt("Claps", BeatsLevelActivity.count);
                             k.putExtras(b);
+                            BeatsLevelActivity.ar.release();
+                            BeatsLevelActivity.count = 0;
                             startActivity(k);
                         }
-                    }, 8750);
+                    }, 10000);
                 break;
                 case 3:
                     //Level 3
@@ -123,16 +163,30 @@ public class BeatsLevelActivity extends Activity {
                             MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
                             mp.start();
                         }
-                    }, 5250);
+                    }, 5500);
+                    for(int ct = 0; ct < 30; ct++) {
+                        t.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                if (getAmp() > 7500) {
+                                    BeatsLevelActivity.count++;
+                                }
+                            }
+                        }, 5500 + 150*ct);
+                    }
+                    Log.d("Count", "" + count);
                     t.schedule(new TimerTask() {
                         public void run() {
                             Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
                             Bundle b = new Bundle();
                             b.putInt("Level", 3); //Passing parameter of level to BeatsLevelActivity
+                            b.putInt("Claps", BeatsLevelActivity.count);
                             k.putExtras(b);
+                            BeatsLevelActivity.ar.release();
+                            BeatsLevelActivity.count = 0;
                             startActivity(k);
                         }
-                    }, 8750);
+                    }, 10000);
                 break;
             }
         } catch(Exception e){
@@ -140,5 +194,19 @@ public class BeatsLevelActivity extends Activity {
         }
         return true;
     }
+
+    public int getAmp() {
+        short[] buffer = new short[minSize];
+        ar.read(buffer, 0, minSize);
+        int max = 0;
+        for (short s : buffer){
+            if (Math.abs(s) > max){
+                max = Math.abs(s);
+            }
+        }
+        return max;
+    }
+
+
 
 }

@@ -2,6 +2,7 @@ package android.hci.edumusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +16,7 @@ public class BeatsFeedback extends Activity {
 
     EduMusicDB db;
     int levelId;
+    TextView feedbackTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +41,20 @@ public class BeatsFeedback extends Activity {
         notesButton.setTypeface(tf, Typeface.BOLD);
         notesButton.setText(""+db.getPts());
 
+        feedbackTxt = (TextView) findViewById(R.id.feedback_text);
+        feedbackTxt.setTextSize(48);
+        feedbackTxt.setTextColor(Color.DKGRAY);
+        feedbackTxt.setTypeface(tf, Typeface.BOLD);
+
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
-        db.setStars("B" + levelId, 3);
-
+        int claps = b.getInt("Claps");
+        if(levelId == 1 && claps == 3 || levelId == 2 && claps == 6 || levelId == 3 && claps == 6){
+            feedbackTxt.setText("Correct!");
+            db.setStars("B" + levelId, 3);
+        } else{
+            feedbackTxt.setText("Incorrect!");
+        }
     }
 
 
