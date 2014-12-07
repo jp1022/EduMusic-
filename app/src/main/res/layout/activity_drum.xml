@@ -59,7 +59,7 @@
         android:id="@+id/drum_description"
         android:layout_below="@+id/imageButton"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="37dp" />
+        android:layout_marginTop="20dp" />
 
     <!-- Button that actually executes the transaction-->
     <Button
