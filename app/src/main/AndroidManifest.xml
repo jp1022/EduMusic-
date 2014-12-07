@@ -49,7 +49,7 @@
             android:name=".PianoActivity"/>
         <!-- Kazoo -->
         <activity
-            android:name=".KazooActivity"/>
+            android:name=".DigActivity"/>
 
         <!-- My Instruments -->
         <activity

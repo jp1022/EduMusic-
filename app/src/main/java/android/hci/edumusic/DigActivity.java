@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -13,16 +14,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by John on 11/21/14.
  */
-public class KazooActivity extends Activity{
+public class DigActivity extends Activity{
 
     EduMusicDB db;
+    final Handler my_handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kazoo);
+        setContentView(R.layout.activity_dig);
         db = new EduMusicDB(this);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
@@ -34,15 +39,20 @@ public class KazooActivity extends Activity{
         titleText.setTypeface(tf, Typeface.BOLD);
         titleText.setGravity(Gravity.CENTER);
 
-        TextView kazooDescButton = (TextView) findViewById(R.id.kazoo_description);
-        TextView purchaseButton = (TextView) findViewById(R.id.kazoo_transaction);
+        TextView digDescButton = (TextView) findViewById(R.id.dig_description);
+        TextView purchaseButton = (TextView) findViewById(R.id.dig_transaction);
 
-        kazooDescButton.setTextSize(15);
-        kazooDescButton.setTypeface(tf, Typeface.BOLD);
+        digDescButton.setTextSize(15);
+        digDescButton.setTypeface(tf, Typeface.BOLD);
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
 
-        if(db.getInstrument("KAZOO")){
+        if(db.getPts() < 300){
+            purchaseButton.setAlpha(.1f);
+            purchaseButton.setClickable(false);
+        }
+
+        if(db.getInstrument("DIG")){
             purchaseButton.setVisibility(View.INVISIBLE);
         }
 
@@ -72,17 +82,33 @@ public class KazooActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void playKazoo(View v){
+    public void playDig(View v){
         MediaPlayer mp;
-        mp = MediaPlayer.create(KazooActivity.this, R.raw.didgeridoo);
+        mp = MediaPlayer.create(DigActivity.this, R.raw.didgeridoo);
         mp.start();
     }
 
     public void purchased(View v){
-        db.purchaseInstrument("KAZOO");
-        if(db.getInstrument("KAZOO")) {
-            Log.d("Purchased", "purchased KAZOO!");
-        }
-        recreate();
+        db.purchaseInstrument("DIG");
+        db.addPts(-300);
+        MediaPlayer mp = MediaPlayer.create(DigActivity.this, R.raw.caching);
+        mp.start();
+        Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                my_refresh();
+            }
+        }, 1500);
+
     }
+
+    private void my_refresh(){
+        my_handler.post(refreshRunnable);
+    }
+
+    final Runnable refreshRunnable = new Runnable(){
+        public void run(){
+            recreate();
+        }
+    };
 }

@@ -72,9 +72,7 @@ public class EduMusicDB extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT LEVEL, STARS FROM " + LEVEL_TABLE_NAME, null);
         if(c.moveToFirst()){
             while(!c.isAfterLast()){
-                Log.d(c.getString(0), lvlName);
                 if(c.getString(0).equals(lvlName)){
-                    Log.d("Stars", "" + c.getInt(1));
                     return c.getInt(1);
                 } else {
                     c.moveToNext();
@@ -93,23 +91,21 @@ public class EduMusicDB extends SQLiteOpenHelper {
         piano.put("INSTRUMENT", "PIANO");
         piano.put("OWNED", false);
         piano.put("POINTS", 250);
-        ContentValues kazoo = new ContentValues();
-        kazoo.put("INSTRUMENT", "KAZOO");
-        kazoo.put("OWNED", false);
-        kazoo.put("POINTS", 300);
+        ContentValues dig = new ContentValues();
+        dig.put("INSTRUMENT", "DIG");
+        dig.put("OWNED", false);
+        dig.put("POINTS", 300);
         db.insert(STORE_TABLE_NAME, null, drums);
         db.insert(STORE_TABLE_NAME, null, piano);
-        db.insert(STORE_TABLE_NAME, null, kazoo);
+        db.insert(STORE_TABLE_NAME, null, dig);
     }
 
     public boolean getInstrument(String inst){
         SQLiteDatabase db = this.getWritableDatabase();
-        int pts = 0;
         Cursor c = db.rawQuery("SELECT OWNED FROM " + STORE_TABLE_NAME + " WHERE INSTRUMENT = \"" + inst + "\";", null);
         if(c.moveToFirst()){
             return (c.getInt(0) > 0);
         }
-
         return false;
     }
 
@@ -143,6 +139,5 @@ public class EduMusicDB extends SQLiteOpenHelper {
             currPts = c.getInt(0);
         }
         db.execSQL("UPDATE " +  POINTS_TABLE_NAME + " SET POINTS = " + (currPts + num));
-        Log.d("Actual", "" + currPts);
     }
 }

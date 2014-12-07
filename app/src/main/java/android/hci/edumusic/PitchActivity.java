@@ -27,7 +27,8 @@ public class PitchActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pitch);
-
+        db = new EduMusicDB(this);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
         Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
 
         TextView titleText = (TextView) findViewById(R.id.pitch_title);
@@ -35,8 +36,6 @@ public class PitchActivity extends Activity{
         titleText.setTextSize(55);
         titleText.setTextColor(Color.DKGRAY);
         titleText.setTypeface(title, Typeface.BOLD);
-
-        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
         TextView levelOne = (TextView) findViewById(R.id.pitchOne);
         TextView levelTwo = (TextView) findViewById(R.id.pitchTwo);
@@ -60,7 +59,6 @@ public class PitchActivity extends Activity{
         levelFive.setTypeface(tf, Typeface.BOLD);
         levelSix.setTextSize(20);
         levelSix.setTypeface(tf, Typeface.BOLD);
-        db = new EduMusicDB(this);
         if(db.getStars("P1") <= 0) { //Grey out 2
             Button _p2 = (Button) findViewById(R.id.pitchTwo);
             _p2.setAlpha(.1f);
@@ -140,16 +138,6 @@ public class PitchActivity extends Activity{
                     startActivity(i);
                     break;
             }
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
-
-    public boolean disabled(View v){
-        try{
-            Intent k = new Intent(PitchActivity.this, DisabledActivity.class);
-            startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING
         }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,68 +23,64 @@ public class StoreActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
         db = new EduMusicDB(this);
-
-
-
         Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+
 
         TextView titleText = (TextView) findViewById(R.id.instr_title);
-
         titleText.setTextSize(55);
         titleText.setTextColor(Color.DKGRAY);
         titleText.setTypeface(title, Typeface.BOLD);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
-        TextView drumButton = (TextView) findViewById(R.id.inst_tuba);
-        TextView pianoButton = (TextView) findViewById(R.id.inst_cymbal);
+
         TextView myInstrumentsButton = (TextView) findViewById(R.id.my_inst);
-        TextView eggButton = (TextView) findViewById(R.id.go_store);
-        TextView guitarButton = (TextView) findViewById(R.id.buy_guitar);
-        TextView kazooButton = (TextView) findViewById(R.id.inst_banjo);
-        TextView tromboneButton = (TextView) findViewById(R.id.buy_trombone);
+        myInstrumentsButton.setTextSize(15);
+        myInstrumentsButton.setTypeface(tf, Typeface.BOLD);
         TextView backButton = (TextView) findViewById(R.id.back);
         backButton.setTextSize(15);
         backButton.setTypeface(tf, Typeface.BOLD);
 
+        TextView drumButton = (TextView) findViewById(R.id.inst_drum);
+        TextView pianoButton = (TextView) findViewById(R.id.inst_piano);
+        TextView eggButton = (TextView) findViewById(R.id.inst_egg);
+        TextView guitarButton = (TextView) findViewById(R.id.inst_guitar);
+        TextView digButton = (TextView) findViewById(R.id.inst_dig);
+        TextView tromboneButton = (TextView) findViewById(R.id.inst_trombone);
 
         drumButton.setTextSize(20);
         drumButton.setTypeface(tf, Typeface.BOLD);
         pianoButton.setTextSize(20);
         pianoButton.setTypeface(tf, Typeface.BOLD);
-        myInstrumentsButton.setTextSize(15);
-        myInstrumentsButton.setTypeface(tf, Typeface.BOLD);
         eggButton.setTextSize(20);
         eggButton.setTypeface(tf, Typeface.BOLD);
         guitarButton.setTextSize(20);
         guitarButton.setTypeface(tf, Typeface.BOLD);
-        kazooButton.setTextSize(20);
-        kazooButton.setTypeface(tf, Typeface.BOLD);
+        digButton.setTextSize(20);
+        digButton.setTypeface(tf, Typeface.BOLD);
         tromboneButton.setTextSize(20);
         tromboneButton.setTypeface(tf, Typeface.BOLD);
 
-        Button _p4 = (Button) findViewById(R.id.go_store);
-        _p4.setAlpha(.1f);
-        _p4.setClickable(false);
-        Button _p5= (Button) findViewById(R.id.buy_trombone);
-        _p5.setAlpha(.1f);
-        _p5.setClickable(false);
-        Button _p6 = (Button) findViewById(R.id.buy_guitar);
-        _p6.setAlpha(.1f);
-        _p6.setClickable(false);
+        //Button _p4 = (Button) findViewById(R.id.inst_egg);
+        guitarButton.setAlpha(.1f);
+        guitarButton.setClickable(false);
+        //Button _p5= (Button) findViewById(R.id.inst_trombone);
+        eggButton.setAlpha(.1f);
+        eggButton.setClickable(false);
+        //Button _p6 = (Button) findViewById(R.id.inst_guitar);
+        tromboneButton.setAlpha(.1f);
+        tromboneButton.setClickable(false);
 
         if(db.getInstrument("DRUM")){
             drumButton.setVisibility(View.INVISIBLE);
         }
-        if(db.getInstrument("KAZOO")){
-            kazooButton.setVisibility(View.INVISIBLE);
+        if(db.getInstrument("DIG")){
+            digButton.setVisibility(View.INVISIBLE);
         }
         if(db.getInstrument("PIANO")){
             pianoButton.setVisibility(View.INVISIBLE);
         }
-
-
-        db = new EduMusicDB(this);
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
         notesButton.setText(""+db.getPts());
@@ -98,6 +95,12 @@ public class StoreActivity extends Activity{
     }
 
     @Override
+    public void onRestart(){
+        super.onRestart();
+        recreate();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -108,6 +111,8 @@ public class StoreActivity extends Activity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     public boolean goDrum(View v){
         try{
@@ -129,9 +134,9 @@ public class StoreActivity extends Activity{
         return true;
     }
 
-    public boolean goKazoo(View v){
+    public boolean goDig(View v){
         try{
-            Intent k = new Intent(StoreActivity.this, KazooActivity.class);
+            Intent k = new Intent(StoreActivity.this, DigActivity.class);
             startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING
@@ -149,15 +154,6 @@ public class StoreActivity extends Activity{
         return true;
     }
 
-    public boolean disabled(View v){
-        try{
-            Intent k = new Intent(StoreActivity.this, DisabledActivity.class);
-            startActivity(k);
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
 
     public void toMain(View v){
         Intent k = new Intent(StoreActivity.this, MainActivity.class);

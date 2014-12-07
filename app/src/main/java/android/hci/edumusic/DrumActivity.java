@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by John on 11/21/14.
  */
@@ -20,12 +24,13 @@ import android.widget.TextView;
 public class DrumActivity extends Activity{
 
     EduMusicDB db;
+    final Handler my_handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drum);
-
+        db = new EduMusicDB(this);
         Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
         TextView titleText = (TextView) findViewById(R.id.textView);
@@ -43,17 +48,17 @@ public class DrumActivity extends Activity{
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
 
+        if(db.getPts() < 200){
+            purchaseButton.setAlpha(.1f);
+            purchaseButton.setClickable(false);
+        }
+
         if(db.getInstrument("DRUM")){
             purchaseButton.setVisibility(View.INVISIBLE);
         }
-
-        db = new EduMusicDB(this);
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
         notesButton.setText(""+db.getPts());
-
-
-
     }
 
 
@@ -84,8 +89,26 @@ public class DrumActivity extends Activity{
 
     public void purchased(View v){
         db.purchaseInstrument("DRUM");
-        if(db.getInstrument("DRUM")) {
-            Log.d("Purchased", "purchased drums!");
-        }
+        db.addPts(-200);
+        MediaPlayer mp = MediaPlayer.create(DrumActivity.this, R.raw.caching);
+        mp.start();
+        Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                my_refresh();
+            }
+        }, 1500);
     }
+
+    private void my_refresh(){
+        my_handler.post(refreshRunnable);
+    }
+
+    final Runnable refreshRunnable = new Runnable(){
+        public void run(){
+            recreate();
+        }
+    };
+
+
 }

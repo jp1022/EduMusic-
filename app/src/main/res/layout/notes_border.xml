@@ -5,7 +5,7 @@
     android:layout_width="wrap_content">
 
     <size
-        android:width="20dp"
+        android:width="17dp"
         android:height="15dp"
         />
 

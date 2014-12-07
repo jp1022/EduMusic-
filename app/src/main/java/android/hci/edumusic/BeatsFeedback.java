@@ -15,41 +15,32 @@ import android.widget.TextView;
 public class BeatsFeedback extends Activity {
 
     EduMusicDB db;
-    int levelId;
-    TextView feedbackTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beats_feedback);
-
+        db = new EduMusicDB(this);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
         TextView levelOne = (TextView) findViewById(R.id.to_main);
         TextView levelTwo = (TextView) findViewById(R.id.beat_lvl);
-
-        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
-
+        Button notesButton = (Button) findViewById(R.id.notes);
+        TextView feedbackTxt = (TextView) findViewById(R.id.feedback_text);
 
         levelOne.setTextSize(15);
         levelOne.setTypeface(tf, Typeface.BOLD);
         levelTwo.setTextSize(15);
         levelTwo.setTypeface(tf, Typeface.BOLD);
-
-
-        db = new EduMusicDB(this);
-
-        Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
-        notesButton.setText(""+db.getPts());
-
-        feedbackTxt = (TextView) findViewById(R.id.feedback_text);
+        notesButton.setText("" + db.getPts());
         feedbackTxt.setTextSize(48);
         feedbackTxt.setTextColor(Color.DKGRAY);
         feedbackTxt.setTypeface(tf, Typeface.BOLD);
 
         Bundle b = getIntent().getExtras();
-        levelId = b.getInt("Level");
+        int levelId = b.getInt("Level");
         int claps = b.getInt("Claps");
-        if(levelId == 1 && claps == 3 || levelId == 2 && claps == 6 || levelId == 3 && claps == 6){
+        if((levelId == 1 && claps == 3) || (levelId == 2 && claps == 6) || (levelId == 3 && claps == 6)){
             feedbackTxt.setText("Correct!");
             db.setStars("B" + levelId, 3);
         } else{

@@ -23,56 +23,45 @@ public class InstruActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruments);
         db = new EduMusicDB(this);
-
-
         Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
+
+
+
 
         TextView titleText = (TextView) findViewById(R.id.instr_title);
-
         titleText.setTextSize(30);
         titleText.setTextColor(Color.DKGRAY);
         titleText.setTypeface(title, Typeface.BOLD);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
-
-        TextView tubaButton = (TextView) findViewById(R.id.inst_tuba);
-        TextView cymbalButton = (TextView) findViewById(R.id.inst_cymbal);
-        TextView storeButton = (TextView) findViewById(R.id.go_store);
-        TextView banjoButton = (TextView) findViewById(R.id.inst_banjo);
+        TextView myInstrumentsButton = (TextView) findViewById(R.id.go_store);
+        myInstrumentsButton.setTextSize(15);
+        myInstrumentsButton.setTypeface(tf, Typeface.BOLD);
         TextView backButton = (TextView) findViewById(R.id.back);
         backButton.setTextSize(15);
         backButton.setTypeface(tf, Typeface.BOLD);
 
+        TextView drumButton = (TextView) findViewById(R.id.inst_drum);
+        TextView pianoButton = (TextView) findViewById(R.id.inst_piano);
+        TextView digButton = (TextView) findViewById(R.id.inst_dig);
 
-        tubaButton.setTextSize(20);
-        tubaButton.setTypeface(tf, Typeface.BOLD);
-        cymbalButton.setTextSize(20);
-        cymbalButton.setTypeface(tf, Typeface.BOLD);
-        storeButton.setTextSize(20);
-        storeButton.setTypeface(tf, Typeface.BOLD);
-        banjoButton.setTextSize(20);
-        banjoButton.setTypeface(tf, Typeface.BOLD);
+
+        drumButton.setTextSize(20);
+        drumButton.setTypeface(tf, Typeface.BOLD);
+        pianoButton.setTextSize(20);
+        pianoButton.setTypeface(tf, Typeface.BOLD);
+        digButton.setTextSize(20);
+        digButton.setTypeface(tf, Typeface.BOLD);
 
         if(!db.getInstrument("DRUM")){
-            tubaButton.setVisibility(View.INVISIBLE);
-        }
-        if(!db.getInstrument("KAZOO")){
-            cymbalButton.setVisibility(View.INVISIBLE);
+            drumButton.setVisibility(View.INVISIBLE);
         }
         if(!db.getInstrument("PIANO")){
-            banjoButton.setVisibility(View.INVISIBLE);
+            pianoButton.setVisibility(View.INVISIBLE);
         }
-//
-//
-//        Button _p4 = (Button) findViewById(R.id.inst_tuba);
-//        _p4.setAlpha(.1f);
-//        _p4.setClickable(false);
-//        Button _p5= (Button) findViewById(R.id.inst_cymbal);
-//        _p5.setAlpha(.1f);
-//        _p5.setClickable(false);
-//        Button _p6 = (Button) findViewById(R.id.inst_banjo);
-//        _p6.setAlpha(.1f);
-//        _p6.setClickable(false);
+        if(!db.getInstrument("DIG")){
+            digButton.setVisibility(View.INVISIBLE);
+        }
 
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
@@ -99,21 +88,11 @@ public class InstruActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean goStore(View v){
-        try{
+    public boolean goStore(View v) {
+        try {
             Intent k = new Intent(InstruActivity.this, StoreActivity.class);
             startActivity(k);
-        } catch(Exception e){
-            //TODO ACTUALLY DO SOMETHING
-        }
-        return true;
-    }
-
-    public boolean disabled(View v){
-        try{
-            Intent k = new Intent(InstruActivity.this, DisabledActivity.class);
-            startActivity(k);
-        } catch(Exception e){
+        } catch (Exception e) {
             //TODO ACTUALLY DO SOMETHING
         }
         return true;
@@ -144,9 +123,9 @@ public class InstruActivity extends Activity {
         return true;
     }
 
-    public boolean goKazoo(View v){
+    public boolean goDig(View v){
         try{
-            Intent k = new Intent(InstruActivity.this, KazooActivity.class);
+            Intent k = new Intent(InstruActivity.this, DigActivity.class);
             startActivity(k);
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING

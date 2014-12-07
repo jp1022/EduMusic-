@@ -29,7 +29,7 @@
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal" />
 
     <!-- Button to play a sample noise-->
@@ -45,7 +45,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:clickable="true"
-        android:onClick="playKazoo"
+        android:onClick="playDig"
         android:background="@layout/image_border"/>
 
     <!-- Description of the instrument. Partially adapted from Wikipedia -->
@@ -53,20 +53,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="This is a wind instrument played by the Aborigines in Australia. You blow into the one end, which produces a low growl. There are no keys; thus you don't have to worry about finger positions. Aborigines often use the instrument to tell stories by mimicking animal sounds."
-        android:id="@+id/kazoo_description"
+        android:id="@+id/dig_description"
         android:layout_below="@+id/imageButton"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="37dp"  />
+        android:layout_marginTop="20dp"  />
 
     <!-- Button that actually executes the transaction-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Purchase"
-        android:id="@+id/kazoo_transaction"
+        android:id="@+id/dig_transaction"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="purchased"
-
         android:background="@layout/button_border"/>
 </RelativeLayout>

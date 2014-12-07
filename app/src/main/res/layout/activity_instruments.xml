@@ -34,19 +34,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Drums"
-        android:id="@+id/inst_tuba"
+        android:id="@+id/inst_drum"
         android:layout_marginTop="120dp"
-        android:onClick="disabled"
+        android:onClick="goDrum"
         android:background="@layout/button_border"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Didgeridoo"
-        android:id="@+id/inst_cymbal"
+        android:id="@+id/inst_dig"
         android:layout_alignParentRight="true"
         android:layout_marginTop="120dp"
-        android:onClick="disabled"
+        android:onClick="goDig"
         android:background="@layout/button_border"/>
 
     <Button
@@ -63,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Piano"
-        android:id="@+id/inst_banjo"
-        android:onClick="disabled"
+        android:id="@+id/inst_piano"
+        android:onClick="goPiano"
         android:layout_marginTop="200dp"
         android:background="@layout/button_border"/>
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by John on 11/21/14.
  */
@@ -20,6 +24,7 @@ import android.widget.TextView;
 public class PianoActivity extends Activity {
 
     EduMusicDB db;
+    final Handler my_handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,11 @@ public class PianoActivity extends Activity {
         drumDescButton.setTypeface(tf, Typeface.BOLD);
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
+
+        if(db.getPts() < 250){
+            purchaseButton.setAlpha(.1f);
+            purchaseButton.setClickable(false);
+        }
 
         if(db.getInstrument("PIANO")){
             purchaseButton.setVisibility(View.INVISIBLE);
@@ -78,9 +88,24 @@ public class PianoActivity extends Activity {
 
     public void purchased(View v){
         db.purchaseInstrument("PIANO");
-        if(db.getInstrument("PIANO")) {
-            Log.d("Purchased", "purchased PIANO!");
-        }
-        recreate();
+        db.addPts(-250);
+        MediaPlayer mp = MediaPlayer.create(PianoActivity.this, R.raw.caching);
+        mp.start();
+        Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                my_refresh();
+            }
+        }, 1500);
     }
+
+    private void my_refresh(){
+        my_handler.post(refreshRunnable);
+    }
+
+    final Runnable refreshRunnable = new Runnable(){
+        public void run(){
+            recreate();
+        }
+    };
 }

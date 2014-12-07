@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +25,10 @@ import java.util.TimerTask;
  * Created by ian on 11/19/2014.
  */
 public class BeatsLevelActivity extends Activity {
-    int levelId;
-    static int count=0;
+
     EduMusicDB db;
+    int levelId;
+    static int count = 0;
     //for audio
     static private AudioRecord ar = null;
     private int minSize;
@@ -34,22 +36,24 @@ public class BeatsLevelActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beatslevel);
-
+        db = new EduMusicDB(this);
         Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
         TextView levelOne = (TextView) findViewById(R.id.startRhythm);
+        Button notesButton = (Button) findViewById(R.id.notes);
+        TextView titleText = (TextView) findViewById(R.id.instruction);
 
+        titleText.setTextSize(48);
+        titleText.setTextColor(Color.DKGRAY);
+        titleText.setTypeface(tf, Typeface.BOLD);
+        titleText.setGravity(Gravity.CENTER);
         levelOne.setTextSize(15);
         levelOne.setTypeface(tf, Typeface.BOLD);
-
+        notesButton.setTypeface(tf, Typeface.BOLD);
+        notesButton.setText(""+db.getPts());
 
         Bundle b = getIntent().getExtras();
         levelId = b.getInt("Level");
-
-        db = new EduMusicDB(this);
-        Button notesButton = (Button) findViewById(R.id.notes);
-        notesButton.setTypeface(tf, Typeface.BOLD);
-        notesButton.setText(""+db.getPts());
     }
 
 
@@ -80,117 +84,55 @@ public class BeatsLevelActivity extends Activity {
         ar = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000,AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,minSize);
         ar.startRecording();
         try{
-            Timer t = new Timer();
             MediaPlayer mp;
             switch(levelId){
                 case 1:
                     //Level 1 audio
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsone);
                     mp.start();
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
-                            mp.start();
-                        }
-                    }, 5500);
-                    for(int ct = 0; ct < 30; ct++) {
-                        t.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (getAmp() > 7500) {
-                                    BeatsLevelActivity.count++;
-                                }
-                            }
-                        }, 5500 + 150 * ct);
-                    }
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            Log.d("Count", "" + BeatsLevelActivity.count);
-                            Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
-                            Bundle b = new Bundle();
-                            b.putInt("Level", 1); //Passing parameter of level to BeatsLevelActivity
-                            b.putInt("Claps", BeatsLevelActivity.count);
-                            k.putExtras(b);
-
-                            BeatsLevelActivity.ar.release();
-                            BeatsLevelActivity.count = 0;
-                            startActivity(k);
-                        }
-                    }, 10000);
                 break;
                 case 2:
                     //Level 2
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatstwo);
                     mp.start();
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
-                            mp.start();
-
-                        }
-                    }, 5500);
-                    for(int ct = 0; ct < 30; ct++) {
-                        t.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (getAmp() > 7500) {
-                                    BeatsLevelActivity.count++;
-                                }
-                            }
-                        }, 5500 + 150*ct);
-                    }
-                    Log.d("Count", "" + count);
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
-                            Bundle b = new Bundle();
-                            b.putInt("Level", 2); //Passing parameter of level to BeatsLevelActivity
-                            b.putInt("Claps", BeatsLevelActivity.count);
-                            k.putExtras(b);
-                            BeatsLevelActivity.ar.release();
-                            BeatsLevelActivity.count = 0;
-                            startActivity(k);
-                        }
-                    }, 10000);
                 break;
                 case 3:
                     //Level 3
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.beatsthree);
                     mp.start();
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            Log.d("Tag", "no");
-                            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
-                            mp.start();
-                        }
-                    }, 5500);
-                    for(int ct = 0; ct < 30; ct++) {
-                        t.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (getAmp() > 7500) {
-                                    BeatsLevelActivity.count++;
-                                }
-                            }
-                        }, 5500 + 150*ct);
-                    }
-                    Log.d("Count", "" + count);
-                    t.schedule(new TimerTask() {
-                        public void run() {
-                            Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
-                            Bundle b = new Bundle();
-                            b.putInt("Level", 3); //Passing parameter of level to BeatsLevelActivity
-                            b.putInt("Claps", BeatsLevelActivity.count);
-                            k.putExtras(b);
-                            BeatsLevelActivity.ar.release();
-                            BeatsLevelActivity.count = 0;
-                            startActivity(k);
-                        }
-                    }, 10000);
                 break;
             }
         } catch(Exception e){
             //TODO ACTUALLY DO SOMETHING
+        } finally {
+            Timer t = new Timer();
+            t.schedule(new TimerTask() {
+                public void run() {
+                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.clapstart);
+                    mp.start();
+                }
+            }, 5500);
+            for(int ct = 0; ct < 30; ct++) {
+                t.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (getAmp() > 7500) {
+                            BeatsLevelActivity.count++;
+                        }
+                    }
+                }, 5500 + 150 * ct);
+            }
+            t.schedule(new TimerTask() {
+                public void run() {
+                    Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
+                    Bundle b = new Bundle();
+                    k.putExtras(b);
+
+                    BeatsLevelActivity.ar.release();
+                    BeatsLevelActivity.count = 0;
+                    startActivity(k);
+                }
+            }, 10000);
         }
         return true;
     }

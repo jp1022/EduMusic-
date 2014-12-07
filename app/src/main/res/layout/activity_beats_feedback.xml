@@ -36,7 +36,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Level"
+        android:text="Main Menu"
         android:id="@+id/to_main"
         android:layout_alignParentBottom="true"
         android:onClick="mainMenu"

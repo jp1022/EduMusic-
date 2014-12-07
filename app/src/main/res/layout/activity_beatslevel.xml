@@ -22,6 +22,15 @@
 
     <!-- Text and Instructions -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listen to the beat, then clap it back!"
+        android:id="@+id/instruction"
+        android:textSize="40sp"
+        android:layout_centerInParent="true"
+        android:gravity="center"/>
+
     <!-- Begin Level Button -->
 
     <Button

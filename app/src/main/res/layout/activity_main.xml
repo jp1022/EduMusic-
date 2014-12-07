@@ -11,7 +11,7 @@
 
     <!-- Notes -->
     <Button
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:text="150"
         android:id="@+id/notes"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <!-- Top Row -->
     <Button
