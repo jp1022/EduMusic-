@@ -21,6 +21,7 @@ public class StoreActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+        db = new EduMusicDB(this);
 
 
 
@@ -70,6 +71,16 @@ public class StoreActivity extends Activity{
         Button _p6 = (Button) findViewById(R.id.buy_guitar);
         _p6.setAlpha(.1f);
         _p6.setClickable(false);
+
+        if(db.getInstrument("DRUM")){
+            drumButton.setVisibility(View.INVISIBLE);
+        }
+        if(db.getInstrument("KAZOO")){
+            kazooButton.setVisibility(View.INVISIBLE);
+        }
+        if(db.getInstrument("PIANO")){
+            pianoButton.setVisibility(View.INVISIBLE);
+        }
 
 
         db = new EduMusicDB(this);

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ public class KazooActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kazoo);
+        db = new EduMusicDB(this);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "simple_girl.ttf");
 
@@ -40,7 +42,10 @@ public class KazooActivity extends Activity{
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
 
-        db = new EduMusicDB(this);
+        if(db.getInstrument("KAZOO")){
+            purchaseButton.setVisibility(View.INVISIBLE);
+        }
+
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
         notesButton.setText(""+db.getPts());
@@ -71,5 +76,13 @@ public class KazooActivity extends Activity{
         MediaPlayer mp;
         mp = MediaPlayer.create(KazooActivity.this, R.raw.didgeridoo);
         mp.start();
+    }
+
+    public void purchased(View v){
+        db.purchaseInstrument("KAZOO");
+        if(db.getInstrument("KAZOO")) {
+            Log.d("Purchased", "purchased KAZOO!");
+        }
+        recreate();
     }
 }

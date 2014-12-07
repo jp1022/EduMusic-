@@ -63,8 +63,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Purchase"
+        android:onClick="purchased"
+
         android:id="@+id/piano_transaction"
-        android:layout_alignBottom="@+id/view"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@layout/button_border"/>
 </RelativeLayout>

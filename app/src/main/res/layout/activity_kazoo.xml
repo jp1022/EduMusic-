@@ -63,7 +63,9 @@
         android:layout_height="wrap_content"
         android:text="Purchase"
         android:id="@+id/kazoo_transaction"
-        android:layout_alignBottom="@+id/view"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="purchased"
+
         android:background="@layout/button_border"/>
 </RelativeLayout>

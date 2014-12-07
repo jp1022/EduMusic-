@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tuba"
+        android:text="Drums"
         android:id="@+id/inst_tuba"
         android:layout_marginTop="120dp"
         android:onClick="disabled"
@@ -42,7 +42,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cymbal"
+        android:text="Didgeridoo"
         android:id="@+id/inst_cymbal"
         android:layout_alignParentRight="true"
         android:layout_marginTop="120dp"
@@ -62,7 +62,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Banjo"
+        android:text="Piano"
         android:id="@+id/inst_banjo"
         android:onClick="disabled"
         android:layout_marginTop="200dp"

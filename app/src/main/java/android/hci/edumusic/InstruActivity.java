@@ -22,6 +22,8 @@ public class InstruActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruments);
+        db = new EduMusicDB(this);
+
 
         Typeface title = Typeface.createFromAsset(getAssets(), "games.ttf");
 
@@ -51,17 +53,27 @@ public class InstruActivity extends Activity {
         banjoButton.setTextSize(20);
         banjoButton.setTypeface(tf, Typeface.BOLD);
 
-        Button _p4 = (Button) findViewById(R.id.inst_tuba);
-        _p4.setAlpha(.1f);
-        _p4.setClickable(false);
-        Button _p5= (Button) findViewById(R.id.inst_cymbal);
-        _p5.setAlpha(.1f);
-        _p5.setClickable(false);
-        Button _p6 = (Button) findViewById(R.id.inst_banjo);
-        _p6.setAlpha(.1f);
-        _p6.setClickable(false);
+        if(!db.getInstrument("DRUM")){
+            tubaButton.setVisibility(View.INVISIBLE);
+        }
+        if(!db.getInstrument("KAZOO")){
+            cymbalButton.setVisibility(View.INVISIBLE);
+        }
+        if(!db.getInstrument("PIANO")){
+            banjoButton.setVisibility(View.INVISIBLE);
+        }
+//
+//
+//        Button _p4 = (Button) findViewById(R.id.inst_tuba);
+//        _p4.setAlpha(.1f);
+//        _p4.setClickable(false);
+//        Button _p5= (Button) findViewById(R.id.inst_cymbal);
+//        _p5.setAlpha(.1f);
+//        _p5.setClickable(false);
+//        Button _p6 = (Button) findViewById(R.id.inst_banjo);
+//        _p6.setAlpha(.1f);
+//        _p6.setClickable(false);
 
-        db = new EduMusicDB(this);
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
         notesButton.setText(""+db.getPts());
@@ -110,5 +122,35 @@ public class InstruActivity extends Activity {
     public void toMain(View v){
         Intent k = new Intent(InstruActivity.this, MainActivity.class);
         startActivity(k);
+    }
+
+    public boolean goDrum(View v){
+        try{
+            Intent k = new Intent(InstruActivity.this, DrumActivity.class);
+            startActivity(k);
+        } catch(Exception e){
+            //TODO ACTUALLY DO SOMETHING
+        }
+        return true;
+    }
+
+    public boolean goPiano(View v){
+        try{
+            Intent k = new Intent(InstruActivity.this, PianoActivity.class);
+            startActivity(k);
+        } catch(Exception e){
+            //TODO ACTUALLY DO SOMETHING
+        }
+        return true;
+    }
+
+    public boolean goKazoo(View v){
+        try{
+            Intent k = new Intent(InstruActivity.this, KazooActivity.class);
+            startActivity(k);
+        } catch(Exception e){
+            //TODO ACTUALLY DO SOMETHING
+        }
+        return true;
     }
 }

@@ -59,8 +59,7 @@
         android:text="My Instruments"
         android:id="@+id/my_inst"
         android:onClick="goInstrument"
-        android:layout_alignTop="@+id/view"
-        android:layout_alignEnd="@+id/view"
+        android:layout_alignParentRight="true"
         android:background="@layout/button_border"/>
 
     <Button

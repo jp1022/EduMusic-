@@ -29,7 +29,6 @@
         android:id="@+id/feedback_text"
         android:text="Correct!"
         android:textSize="50sp"
-        android:layout_alignTop="@+id/view"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />

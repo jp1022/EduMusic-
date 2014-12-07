@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,10 @@ public class DrumActivity extends Activity{
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
 
+        if(db.getInstrument("DRUM")){
+            purchaseButton.setVisibility(View.INVISIBLE);
+        }
+
         db = new EduMusicDB(this);
         Button notesButton = (Button) findViewById(R.id.notes);
         notesButton.setTypeface(tf, Typeface.BOLD);
@@ -75,5 +80,12 @@ public class DrumActivity extends Activity{
         MediaPlayer mp;
         mp = MediaPlayer.create(DrumActivity.this, R.raw.drumroll);
         mp.start();
+    }
+
+    public void purchased(View v){
+        db.purchaseInstrument("DRUM");
+        if(db.getInstrument("DRUM")) {
+            Log.d("Purchased", "purchased drums!");
+        }
     }
 }

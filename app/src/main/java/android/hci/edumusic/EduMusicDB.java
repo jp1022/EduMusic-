@@ -18,12 +18,12 @@ public class EduMusicDB extends SQLiteOpenHelper {
     private static final String POINTS_TABLE_NAME = "points";
     private static final String LEVEL_TABLE_CREATE =
             "CREATE TABLE " + LEVEL_TABLE_NAME + " (" +
-            "LEVEL TEXT, STARS INT)";
+                    "LEVEL TEXT, STARS INT)";
     private static final String STORE_TABLE_CREATE =
             "CREATE TABLE " + STORE_TABLE_NAME + " (" +
-            "INSTRUMENT TEXT, OWNED BOOLEAN, POINTS INT)";
+                    "INSTRUMENT TEXT, OWNED BOOLEAN, POINTS INT)";
     private static final String POINTS_TABLE_CREATE =
-                    "CREATE TABLE " + POINTS_TABLE_NAME + " (" +
+            "CREATE TABLE " + POINTS_TABLE_NAME + " (" +
                     "POINTS INT)";
 
     EduMusicDB(Context c){
@@ -52,42 +52,6 @@ public class EduMusicDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void updateInstrument(String level, int stars){ //Adopted from Ravi Tamada
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE" + LEVEL_TABLE_NAME + "SET STARS = " + stars + " WHERE LEVEL = " + level);
-    }
-
-    public void purchaseInstrument(String name){ //Adopted from Ravi Tamada
-        SQLiteDatabase db = this.getWritableDatabase();
-        int pts = 0;
-        Cursor c = db.rawQuery("SELECT POINTS FROM " + STORE_TABLE_NAME + " WHERE INSTRUMENT = " + name, null);
-        if(c.moveToFirst()){
-            pts = c.getInt(0);
-        }
-        db.execSQL("UPDATE" +  STORE_TABLE_NAME + "SET OWNED = TRUE WHERE INSTRUMENT = " + name);
-    }
-    public int getPts(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        int currPts = 0;
-        Cursor c = db.rawQuery("SELECT POINTS FROM " + POINTS_TABLE_NAME, null);
-        if(c.moveToFirst()){
-            currPts = c.getInt(0);
-        }
-        db.close();
-        return currPts;
-    }
-
-    public void addPts(int num){
-        SQLiteDatabase db = this.getWritableDatabase();
-        int currPts = 0;
-        Cursor c = db.rawQuery("SELECT POINTS FROM " + POINTS_TABLE_NAME, null);
-        if(c.moveToFirst()){
-            currPts = c.getInt(0);
-        }
-        db.execSQL("UPDATE " +  POINTS_TABLE_NAME + " SET POINTS = " + (currPts + num));
-        Log.d("Actual", "" + currPts);
-    }
-
     public void setUpLevels(SQLiteDatabase db){
         db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'B1\', 0);");
         db.execSQL("INSERT INTO " + LEVEL_TABLE_NAME + " (LEVEL, STARS) VALUES(\'B2\', 0);");
@@ -100,17 +64,13 @@ public class EduMusicDB extends SQLiteOpenHelper {
 
     public void setStars(String lvlName, int num){
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.d("Stars", "" + num);
-        Log.d("LVL", lvlName);
         db.execSQL("UPDATE " +  LEVEL_TABLE_NAME + " SET STARS=" + num + " WHERE LEVEL=\"" + lvlName + "\"");
     }
 
     public int getStars(String lvlName){
         SQLiteDatabase db = this.getWritableDatabase();
-
         Cursor c = db.rawQuery("SELECT LEVEL, STARS FROM " + LEVEL_TABLE_NAME, null);
         if(c.moveToFirst()){
-            Log.d("Begin", "Here");
             while(!c.isAfterLast()){
                 Log.d(c.getString(0), lvlName);
                 if(c.getString(0).equals(lvlName)){
@@ -142,10 +102,47 @@ public class EduMusicDB extends SQLiteOpenHelper {
         db.insert(STORE_TABLE_NAME, null, kazoo);
     }
 
+    public boolean getInstrument(String inst){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int pts = 0;
+        Cursor c = db.rawQuery("SELECT OWNED FROM " + STORE_TABLE_NAME + " WHERE INSTRUMENT = \"" + inst + "\";", null);
+        if(c.moveToFirst()){
+            return (c.getInt(0) > 0);
+        }
+
+        return false;
+    }
+
+    public void purchaseInstrument(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " +  STORE_TABLE_NAME + " SET OWNED = '1' WHERE INSTRUMENT = \"" + name + "\";");
+    }
+
     public void setUpPts(SQLiteDatabase db){
-        Log.d("Test", "Yes");
         ContentValues pts = new ContentValues();
         pts.put("POINTS", 150);
         db.insert(POINTS_TABLE_NAME, null, pts);
+    }
+
+    public int getPts(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int currPts = 0;
+        Cursor c = db.rawQuery("SELECT POINTS FROM " + POINTS_TABLE_NAME, null);
+        if(c.moveToFirst()){
+            currPts = c.getInt(0);
+        }
+        db.close();
+        return currPts;
+    }
+
+    public void addPts(int num){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int currPts = 0;
+        Cursor c = db.rawQuery("SELECT POINTS FROM " + POINTS_TABLE_NAME, null);
+        if(c.moveToFirst()){
+            currPts = c.getInt(0);
+        }
+        db.execSQL("UPDATE " +  POINTS_TABLE_NAME + " SET POINTS = " + (currPts + num));
+        Log.d("Actual", "" + currPts);
     }
 }
