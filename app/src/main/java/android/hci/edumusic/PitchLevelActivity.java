@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by mshon on 11/20/14.
  */
@@ -94,6 +97,11 @@ public class PitchLevelActivity extends Activity {
     }
 
     public boolean playPitch(View v){
+        Button pitchButton = (Button) findViewById(R.id.startPitch);
+        pitchButton.setAlpha(.1f);
+        pitchButton.setClickable(false);
+
+        Timer t = new Timer();
         try{
             MediaPlayer mp;
             switch(levelId){
@@ -101,40 +109,34 @@ public class PitchLevelActivity extends Activity {
                     //Level 1
                     mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.piano_octave0mp);
                     mp.start();
-
-                    Thread.sleep(2000);
-                    //Start tone
-                    mp = MediaPlayer.create(getApplicationContext(), R.raw.piano_octave1mp);
-                    mp.start();
-                    Thread.sleep(2000);
-                    mp.stop();
-
+                    t.schedule(new TimerTask() {
+                        public void run() {
+                            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.piano_octave1mp);
+                            mp.start();
+                        }
+                    }, 2000);
                     break;
                 case 2:
                     //Level 2
-
                     mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.guitar_octave3mp);
                     mp.start();
-                    Thread.sleep(2000);
-                    //Start tone
-                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.guitar_octave2mp);
-                    mp.start();
-                    Thread.sleep(2000);
-                    mp.stop();
-
+                    t.schedule(new TimerTask() {
+                        public void run() {
+                            MediaPlayer mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.guitar_octave2mp);
+                            mp.start();
+                        }
+                    }, 2000);
                     break;
                 case 3:
                     //Level 3
-
                     mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.femalevoice_aa_db4mp);
                     mp.start();
-                    Thread.sleep(3000);
-                    //Start tone
-                    mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.femalevoice_aa_a3mp);
-                    mp.start();
-                    Thread.sleep(3000);
-                    mp.stop();
-
+                    t.schedule(new TimerTask() {
+                        public void run() {
+                            MediaPlayer mp = MediaPlayer.create(PitchLevelActivity.this, R.raw.femalevoice_aa_a3mp);
+                            mp.start();
+                        }
+                    }, 3000);
                     break;
             }
         } catch(Exception e){

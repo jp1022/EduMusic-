@@ -34,11 +34,11 @@ public class KazooActivity extends Activity{
         titleText.setTypeface(tf, Typeface.BOLD);
         titleText.setGravity(Gravity.CENTER);
 
-        TextView drumDescButton = (TextView) findViewById(R.id.drum_description);
+        TextView kazooDescButton = (TextView) findViewById(R.id.kazoo_description);
         TextView purchaseButton = (TextView) findViewById(R.id.kazoo_transaction);
 
-        drumDescButton.setTextSize(15);
-        drumDescButton.setTypeface(tf, Typeface.BOLD);
+        kazooDescButton.setTextSize(15);
+        kazooDescButton.setTypeface(tf, Typeface.BOLD);
         purchaseButton.setTextSize(15);
         purchaseButton.setTypeface(tf, Typeface.BOLD);
 
