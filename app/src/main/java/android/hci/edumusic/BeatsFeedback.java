@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +41,7 @@ public class BeatsFeedback extends Activity {
         Bundle b = getIntent().getExtras();
         int levelId = b.getInt("Level");
         int claps = b.getInt("Claps");
+        Log.d("Claps", "" + claps);
         if((levelId == 1 && claps == 3) || (levelId == 2 && claps == 6) || (levelId == 3 && claps == 6)){
             feedbackTxt.setText("Correct!");
             db.setStars("B" + levelId, 3);

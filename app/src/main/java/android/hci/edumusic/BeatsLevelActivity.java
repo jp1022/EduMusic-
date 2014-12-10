@@ -112,20 +112,24 @@ public class BeatsLevelActivity extends Activity {
                     mp.start();
                 }
             }, 5500);
-            for(int ct = 0; ct < 30; ct++) {
+            for(int ct = 0; ct < 45; ct++) {
                 t.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if (getAmp() > 7500) {
+                        int amp = getAmp();
+                        if (amp > 15000) {
+                            Log.d("Amp", "" + amp);
                             BeatsLevelActivity.count++;
                         }
                     }
-                }, 5500 + 150 * ct);
+                }, 5500 + 100 * ct);
             }
             t.schedule(new TimerTask() {
                 public void run() {
                     Intent k = new Intent(BeatsLevelActivity.this, BeatsFeedback.class);
                     Bundle b = new Bundle();
+                    b.putInt("Level", levelId);
+                    b.putInt("Claps", BeatsLevelActivity.count);
                     k.putExtras(b);
 
                     BeatsLevelActivity.ar.release();
